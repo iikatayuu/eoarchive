@@ -33,8 +33,6 @@ class Archive_service_model extends CI_Model {
     parent::__construct();
 
     $this->data_path = dirname(__FILE__, 6) . '/data';
-    if (!file_exists($this->data_path)) mkdir($this->data_path);
-
     $this->table = json_decode(DB_TABLE);
     $this->load->model([]);
   }

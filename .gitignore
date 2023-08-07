@@ -8,6 +8,10 @@ application/logs/*
 
 !application/*/.htaccess
 
+data/*
+!data/.htaccess
+!data/index.html
+
 composer.lock
 tests/mocks/database/ci_test.sqlite
 
@@ -16,7 +20,6 @@ user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
-/data/
 
 # IDE Files
 #-------------------------
