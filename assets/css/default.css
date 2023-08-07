@@ -1,0 +1,10 @@
+
+.form-error,
+.form-success,
+.btn-process {
+  display: none;
+}
+
+main {
+  min-height: calc(100vh - 104px);
+}
