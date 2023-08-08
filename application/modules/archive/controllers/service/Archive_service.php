@@ -25,9 +25,11 @@ class Archive_service extends MX_Controller {
   public function get_pdf () {
     $this->asModel->id = $this->uri->segment(5);
     $response = $this->asModel->get_pdf();
+    $orig_name = $response['filename'];
 
     header('Content-Type: application/pdf');
-    echo $response;
+    header("Content-Disposition: inline; filename=$orig_name");
+    echo $response['pdf'];
   }
 
   public function add_eo () {

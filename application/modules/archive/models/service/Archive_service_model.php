@@ -56,8 +56,17 @@ class Archive_service_model extends CI_Model {
   }
 
   public function get_pdf () {
-    $file_path = "{$this->data_path}/{$this->id}.pdf";
-    return file_get_contents($file_path);
+    $this->db->select('*');
+    $this->db->from($this->table->eo);
+    $this->db->where('id', $this->id);
+    $this->db->limit(1);
+    $result = $this->db->get()->result();
+    $filename = count($result) > 0 ? $result[0]->filename : $this->id;
+
+    return [
+      'filename' => $filename,
+      'pdf' => file_get_contents("{$this->data_path}/{$this->id}.pdf")
+    ];
   }
 
   public function add_eo () {
