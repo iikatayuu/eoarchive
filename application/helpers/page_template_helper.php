@@ -44,7 +44,8 @@ function page_header ($title = 'EO Archive', $scripts = [], $styles = []) {
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-start justify-content-sm-between">
         <a href="<?= $baseurl ?>" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img src="<?= $baseurl ?>assets/imgs/logo.png" alt="Food Inventory Logo" width="32" height="32" class="bi me-2" />
+          <img src="<?= $baseurl ?>assets/imgs/logo.png" alt="EO Archive System Logo" width="64" height="64" class="bi me-2" />
+          <h4>EXECUTIVE ORDERS ARCHIVING SYSTEM</h4>
         </a>
 
         <ul class="nav">
