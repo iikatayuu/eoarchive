@@ -96,6 +96,12 @@ $(document).ready(function () {
     $('#eos-next').parent().toggleClass('disabled', active === totalPages || totalPages === 0);
   }
 
+  async function submitSearch () {
+    query = $('#archive-search-q').val();
+    offset = 0;
+    await loadItems();
+  }
+
   $('#eos-prev').click(async function (event) {
     event.preventDefault();
 
@@ -110,12 +116,17 @@ $(document).ready(function () {
     await loadItems();
   });
 
+  let searchTimeout = null;
+  $('#archive-search-q').on('keyup', function () {
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function () {
+      submitSearch();
+    }, 500);
+  });
+
   $('#archive-search').submit(async function (event) {
     event.preventDefault();
-
-    query = $('#archive-search-q').val();
-    offset = 0;
-    await loadItems();
+    await submitSearch();
   });
 
   loadItems();
