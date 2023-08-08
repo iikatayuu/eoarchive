@@ -1,7 +1,8 @@
 <?php
 
 $scripts = ['assets/js/archive/index.js'];
-page_header('EO Archive', $scripts);
+$styles = ['assets/css/archive/index.css'];
+page_header('EO Archive', $scripts, $styles);
 
 ?>
 
@@ -24,7 +25,7 @@ page_header('EO Archive', $scripts);
     </a>
   </div>
 
-  <table class="table table-striped shadow">
+  <table id="table-eos-container" class="table table-striped shadow">
     <thead class="table-dark">
       <tr>
         <th scope="col">EO Number</th>
