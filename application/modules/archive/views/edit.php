@@ -25,7 +25,7 @@ page_header('Edit | EO Archive', $scripts);
 
           <div class="form-group mb-2">
             <label for="eo-description">Description:</label>
-            <input type="text" id="eo-description" name="eo-description" class="form-control" value="<?= $eo->description ?>" required />
+            <textarea id="eo-description" name="eo-description" class="form-control" rows="2" required><?= $eo->description ?></textarea>
           </div>
 
           <div class="form-group mb-2">
