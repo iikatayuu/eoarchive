@@ -22,55 +22,60 @@ page_header('EO Archive', $scripts, $styles);
     </button>
   </form>
 
-  <form id="archive-advanced-search" class="col-12 col-lg-6 mb-3">
-    <div class="row">
-      <div class="col-12 col-sm-6">
-        <div class="form-group mb-2">
-          <label for="archive-search-description">Description:</label>
-          <input type="text" id="archive-search-description" class="form-control" placeholder="Title/Description" />
+  <div id="archive-advanced-search-wrapper" class="col-12 col-lg-6 mb-3">
+    <form id="archive-advanced-search" class="card">
+      <div class="card-body">
+        <h4>Advanced Search:</h4>
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <div class="form-group mb-2">
+              <label for="archive-search-description">Description:</label>
+              <textarea id="archive-search-description" class="form-control" rows="2" placeholder="Title/Description"></textarea>
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="archive-search-author">Author:</label>
+              <input type="text" id="archive-search-author" class="form-control" placeholder="Author" />
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="archive-search-approved-date-from">Approved Date From:</label>
+              <input type="date" id="archive-search-approved-date-from" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6">
+            <div class="form-group mb-2">
+              <label for="archive-search-series">Series:</label>
+              <input type="text" id="archive-search-series" class="form-control" placeholder="Series" />
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="archive-search-approved">Approved By:</label>
+              <input type="text" id="archive-search-approved" class="form-control" placeholder="Approved By" />
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="archive-search-approved-date-to">Approved Date To:</label>
+              <input type="date" id="archive-search-approved-date-to" class="form-control" />
+            </div>
+          </div>
         </div>
 
-        <div class="form-group mb-2">
-          <label for="archive-search-author">Author:</label>
-          <input type="text" id="archive-search-author" class="form-control" placeholder="Author" />
-        </div>
+        <div class="d-flex">
+          <button type="submit" class="btn btn-success">
+            <i class="fas fa-search me-1"></i>
+            <span>Search</span>
+          </button>
 
-        <div class="form-group mb-2">
-          <label for="archive-search-approved-date-from">Approved Date From:</label>
-          <input type="date" id="archive-search-approved-date-from" class="form-control" />
+          <button type="button" id="btn-simple-search" class="btn btn-link text-decoration-none">
+            <i class="fas fa-filter fa-sm"></i>
+            <span>Simple Search</span>
+          </button>
         </div>
       </div>
-
-      <div class="col-12 col-sm-6">
-        <div class="form-group mb-2">
-          <label for="archive-search-series">Series:</label>
-          <input type="text" id="archive-search-series" class="form-control" placeholder="Series" />
-        </div>
-
-        <div class="form-group mb-2">
-          <label for="archive-search-approved">Approved By:</label>
-          <input type="text" id="archive-search-approved" class="form-control" placeholder="Approved By" />
-        </div>
-
-        <div class="form-group mb-2">
-          <label for="archive-search-approved-date-to">Approved Date To:</label>
-          <input type="date" id="archive-search-approved-date-to" class="form-control" />
-        </div>
-      </div>
-    </div>
-
-    <div class="d-flex">
-      <button type="submit" class="btn btn-success">
-        <i class="fas fa-search me-1"></i>
-        <span>Search</span>
-      </button>
-
-      <button type="button" id="btn-simple-search" class="btn btn-link text-decoration-none">
-        <i class="fas fa-filter fa-sm"></i>
-        <span>Simple Search</span>
-      </button>
-    </div>
-  </form>
+    </form>
+  </div>
 
   <div class="d-flex justify-content-between mb-2">
     <h4>Executive Orders</h4>

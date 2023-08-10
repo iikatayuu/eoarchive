@@ -198,12 +198,12 @@ $(document).ready(function () {
   });
 
   $('#btn-adv-search').click(function () {
-    $('#archive-advanced-search').show();
+    $('#archive-advanced-search-wrapper').show();
     $('#archive-search').hide();
   });
 
   $('#btn-simple-search').click(function () {
-    $('#archive-advanced-search').hide();
+    $('#archive-advanced-search-wrapper').hide();
     $('#archive-search').show();
   });
 
