@@ -90,7 +90,7 @@ function page_footer () {
     <button type="button" class="btn"></button>
   </template>
 
-  <footer class="container">
+  <footer class="container py-3">
     <div class="text-center">All rights reserved. 2023</div>
   </footer>
 </body>

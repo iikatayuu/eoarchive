@@ -13,7 +13,7 @@ page_header('View | EO Archive', $scripts, $styles);
 
 ?>
 
-<div class="container pt-5">
+<div class="container pt-4">
   <div class="row">
     <div class="col-12 col-sm-4 col-lg-3 mb-2 mb-sm-0">
       <div class="d-flex mb-2">
