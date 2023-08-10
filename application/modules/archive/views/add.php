@@ -51,7 +51,7 @@ page_header('Add New | EO Archive', $scripts);
 
           <div class="form-group mb-2">
             <label for="eo-approved-date">Date Approved:</label>
-            <input type="datetime-local" id="eo-approved-date" name="eo-approved-date" class="form-control" required />
+            <input type="date" id="eo-approved-date" name="eo-approved-date" class="form-control" required />
           </div>
         </div>
       </div>
