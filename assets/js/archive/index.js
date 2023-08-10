@@ -25,9 +25,10 @@ $(document).ready(function () {
   function deleteItem (event) {
     event.preventDefault();
     const id = $(this).data('id');
+    const num = $(this).data('num');
     $.modalAsk({
       title: 'Delete item?',
-      body: `Are you sure to delete item with ID: ${id}?`,
+      body: `Are you sure to delete item with EO Number: ${num}?`,
       buttons: [
         {
           dismiss: true,
@@ -86,7 +87,11 @@ $(document).ready(function () {
       $(elem).find('.eo-author').text(item.author);
       $(elem).find('.eo-date-approved').text(item.date_approved);
       $(elem).find('.eo-view,.eo-edit').attr('href', (i, value) => value + item.id);
-      $(elem).find('.eo-delete').data('id', item.id).click(deleteItem);
+      $(elem).find('.eo-delete').data({
+        id: item.id,
+        num: item.number
+      }).click(deleteItem);
+
       $('#table-eos').append(elem);
     }
 
