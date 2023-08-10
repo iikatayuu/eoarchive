@@ -6,7 +6,7 @@ page_header('Edit | EO Archive', $scripts);
 ?>
 
 <div class="container pt-5">
-  <form action="" method="post" id="archive-edit" class="card bg-light col-12 col-sm-6 mx-auto">
+  <form action="" method="post" id="archive-edit" class="card bg-light col-12 col-sm-6 mx-auto mb-3">
     <div class="card-body">
       <h5 class="card-title">Edit Executive Order</h5>
       <input type="hidden" id="eo-id" name="eo-id" value="<?= $eo->id ?>" required />
