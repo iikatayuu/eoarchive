@@ -5,7 +5,13 @@ $(document).ready(function () {
   const limit = 10;
   let totalCount = 0;
   let offset = 0;
-  let query = '';
+  let qDescription = '';
+  let qSeries = '';
+  let qAuthor = '';
+  let qApproved = '';
+  let qApprovedFrom = '';
+  let qApprovedTo = '';
+  let searchTimeout = null;
 
   function pageNav (page) {
     return async function (event) {
@@ -57,7 +63,12 @@ $(document).ready(function () {
 
   async function loadItems () {
     const params = new URLSearchParams();
-    params.set('query', query);
+    params.set('description', qDescription);
+    params.set('series', qSeries);
+    params.set('author', qAuthor);
+    params.set('approved_by', qApproved);
+    params.set('approved_from', qApprovedFrom);
+    params.set('approved_to', qApprovedTo);
     params.set('offset', offset);
     params.set('limit', limit);
     const items = await $.getJSON(`${serviceApi}/eos?${params.toString()}`);
@@ -96,8 +107,23 @@ $(document).ready(function () {
     $('#eos-next').parent().toggleClass('disabled', active === totalPages || totalPages === 0);
   }
 
-  async function submitSearch () {
-    query = $('#archive-search-q').val();
+  async function submitSearch (advanced = false) {
+    if (advanced) {
+      qDescription = $('#archive-search-description').val();
+      qSeries = $('#archive-search-series').val();
+      qAuthor = $('#archive-search-author').val();
+      qApproved = $('#archive-search-approved').val();
+      qApprovedFrom = $('#archive-search-approved-date-from').val();
+      qApprovedTo = $('#archive-search-approved-date-to').val();
+    } else {
+      qDescription = $('#archive-search-q').val();
+      qSeries = '';
+      qAuthor = '';
+      qApproved = '';
+      qApprovedFrom = '';
+      qApprovedTo = '';
+    }
+
     offset = 0;
     await loadItems();
   }
@@ -116,7 +142,6 @@ $(document).ready(function () {
     await loadItems();
   });
 
-  let searchTimeout = null;
   $('#archive-search-q').on('keyup', function () {
     if (searchTimeout) clearTimeout(searchTimeout);
     searchTimeout = setTimeout(function () {
@@ -127,6 +152,21 @@ $(document).ready(function () {
   $('#archive-search').submit(async function (event) {
     event.preventDefault();
     await submitSearch();
+  });
+
+  $('#archive-advanced-search').submit(async function (event) {
+    event.preventDefault();
+    await submitSearch(true);
+  });
+
+  $('#btn-adv-search').click(function () {
+    $('#archive-advanced-search').show();
+    $('#archive-search').hide();
+  });
+
+  $('#btn-simple-search').click(function () {
+    $('#archive-advanced-search').hide();
+    $('#archive-search').show();
   });
 
   loadItems();

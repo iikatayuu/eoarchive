@@ -11,10 +11,14 @@ class Archive_service extends MX_Controller {
   }
 
   public function eos () {
-    $q = $this->input->get('query');
+    $this->asModel->description = $this->input->get('description');
+    $this->asModel->series = $this->input->get('series');
+    $this->asModel->author = $this->input->get('author');
+    $this->asModel->approved_by = $this->input->get('approved_by');
+    $this->asModel->approved_from = $this->input->get('approved_from');
+    $this->asModel->approved_to = $this->input->get('approved_to');
     $offset = $this->input->get('offset');
     $limit = $this->input->get('limit');
-    $this->asModel->q = empty($q) ? '' : $q;
     $this->asModel->offset = is_numeric($offset) ? intval($offset) : 0;
     $this->asModel->limit = is_numeric($limit) ? intval($limit) : 10;
 

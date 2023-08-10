@@ -1,4 +1,8 @@
 
+#archive-advanced-search {
+  display: none;
+}
+
 #table-eos-container th:nth-child(2) {
   width: 40%;
 }

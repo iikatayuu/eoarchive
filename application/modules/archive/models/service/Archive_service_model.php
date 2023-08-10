@@ -8,12 +8,14 @@ class Archive_service_model extends CI_Model {
   /**
    * Search pagination
    */
-  public $q;
   public $offset;
   public $limit;
 
+  public $approved_from;
+  public $approved_to;
+
   /**
-   * Adding/updating new executive order 
+   * Searching, adding, and updating new executive order 
    */
   public $number;
   public $series;
@@ -40,18 +42,27 @@ class Archive_service_model extends CI_Model {
   public function eos () {
     $this->db->select('*');
     $this->db->from($this->table->eo);
-    $this->db->like('description', $this->q);
-    $this->db->limit($this->limit, $this->offset);
+    $this->db->like('description', $this->description);
+    $this->db->like('series', $this->series);
+    $this->db->like('author', $this->author);
+    $this->db->like('approved_by', $this->approved_by);
+
+    if ($this->approved_from && $this->approved_to) {
+      $approved_from = date('Y-m-d H:i:s', strtotime($this->approved_from));
+      $approved_to = date('Y-m-d H:i:s', strtotime($this->approved_to));
+      $this->db->where("date_approved BETWEEN '$approved_from' AND '$approved_to'");
+    } else if ($this->approved_from) {
+      $approved_from = date('Y-m-d H:i:s', strtotime($this->approved_from));
+      $this->db->where("date_approved > '$approved_from'");
+    } else if ($this->approved_to) {
+      $approved_to = date('Y-m-d H:i:s', strtotime($this->approved_to));
+      $this->db->where("date_approved < '$approved_to'");
+    }
+
     $result = $this->db->get()->result();
-
-    $this->db->select('*');
-    $this->db->from($this->table->eo);
-    $this->db->like('description', $this->q);
-    $count = $this->db->count_all_results();
-
     return array(
-      'results' => $result,
-      'count' => $count
+      'results' => array_slice($result, $this->offset, $this->limit),
+      'count' => count($result)
     );
   }
 
