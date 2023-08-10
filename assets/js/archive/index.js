@@ -92,15 +92,53 @@ $(document).ready(function () {
 
     const active = (offset / limit) + 1;
     const totalPages = Math.ceil(totalCount / limit);
-    for (let i = 0; i < totalPages; i++) {
-      const elem = $(tempPage).clone(true, true);
-      const page = i + 1;
-      const link = $(elem).find('.page-link');
+    if (totalPages > 7) {
+      const addEllipsis = () => {
+        const ellipsis = $(tempPage).clone(true, true);
+        const link = $(ellipsis).find('.page-link');
+        $(link).attr('href', '#').addClass('disabled').text('...');
+        $('#eos-next').parent().before(ellipsis);
+      };
 
-      if (page === active) link.addClass('active');
-      link.attr('href', '#').text(page).click(pageNav(page));
+      const firstPage = $(tempPage).clone(true, true);
+      const firstLink = $(firstPage).find('.page-link');
+      const lastPage = $(tempPage).clone(true, true);
+      const lastLink = $(lastPage).find('.page-link');
 
-      $('#eos-next').parent().before(elem);
+      firstLink.attr('href', '#').text(1).click(pageNav(1));
+      lastLink.attr('href', '#').text(totalPages).click(pageNav(totalPages));
+
+      if (active === 1) firstLink.addClass('active');
+      if (active === totalPages) lastLink.addClass('active');
+
+      $('#eos-next').parent().before(firstPage);
+      if (active - 2 > 2) addEllipsis();
+
+      for (let i = active - 2; i <= active + 2; i++) {
+        if (i <= 1 || i >= totalPages) continue;
+
+        const elem = $(tempPage).clone(true, true);
+        const link = $(elem).find('.page-link');
+  
+        if (active === i) link.addClass('active');
+        link.attr('href', '#').text(i).click(pageNav(i));
+  
+        $('#eos-next').parent().before(elem);
+      }
+
+      if (active + 2 < totalPages - 1) addEllipsis();
+      $('#eos-next').parent().before(lastPage);
+    } else {
+      for (let i = 0; i < totalPages; i++) {
+        const elem = $(tempPage).clone(true, true);
+        const link = $(elem).find('.page-link');
+        const page = i + 1;
+  
+        if (page === active) link.addClass('active');
+        link.attr('href', '#').text(page).click(pageNav(page));
+  
+        $('#eos-next').parent().before(elem);
+      }
     }
 
     $('#eos-prev').parent().toggleClass('disabled', active === 1);
