@@ -31,6 +31,7 @@ function page_header ($title = 'EO Archive', $scripts = [], $styles = []) {
   <script src="<?= $baseurl ?>assets/libs/jquery/jquery.min.js"></script>
   <script src="<?= $baseurl ?>assets/libs/bootstrap/js/bootstrap.min.js"></script>
   <script src="<?= $baseurl ?>assets/libs/fontawesome/js/all.min.js" defer></script>
+  <script src="<?= $baseurl ?>assets/libs/moment/moment.min.js"></script>
   <script src="<?= $baseurl ?>assets/js/default.js"></script>
   <?php foreach ($scripts as $key => $script): ?>
   <script src="<?= $baseurl ?><?= $script ?>"></script>

@@ -36,7 +36,7 @@ page_header('View | EO Archive', $scripts, $styles);
           <div>Author: <?= $eo->author ?></div>
           <div>Author Position: <?= $eo->author_position ?></div>
           <div>Approved By: <?= $eo->approved_by ?></div>
-          <div>Date Approved: <?= $eo->date_approved ?></div>
+          <div>Date Approved: <?= date('F j, Y', strtotime($eo->date_approved)) ?></div>
         </div>
       </div>
 

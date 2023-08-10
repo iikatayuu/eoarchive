@@ -81,11 +81,12 @@ $(document).ready(function () {
     for (let i = 0; i < items.results.length; i++) {
       const item = items.results[i];
       const elem = $(tempItem).clone(true, true);
+      const dateApproved = moment(item.date_approved, moment.DATE).format('MMMM DD, YYYY');
 
       $(elem).find('.eo-number').text(item.number);
       $(elem).find('.eo-description').text(item.description);
       $(elem).find('.eo-author').text(item.author);
-      $(elem).find('.eo-date-approved').text(item.date_approved);
+      $(elem).find('.eo-date-approved').text(dateApproved);
       $(elem).find('.eo-view,.eo-edit').attr('href', (i, value) => value + item.id);
       $(elem).find('.eo-delete').data({
         id: item.id,
