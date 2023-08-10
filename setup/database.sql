@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `tbl_eo` (
   `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'EO Author',
   `author_position` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'EO Author Position',
   `approved_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'EO Approved By',
-  `date_approved` datetime NOT NULL COMMENT 'EO Approved Date',
+  `date_approved` date NOT NULL COMMENT 'EO Approved Date',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'EO Date Created',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='List of Executive Orders';
