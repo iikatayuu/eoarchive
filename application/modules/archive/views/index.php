@@ -77,7 +77,7 @@ page_header('EO Archive', $scripts, $styles);
     </form>
   </div>
 
-  <div class="d-flex justify-content-between mb-2">
+  <div class="d-block d-sm-flex justify-content-between mb-2">
     <h4>Executive Orders</h4>
 
     <div class="d-flex">
@@ -100,19 +100,21 @@ page_header('EO Archive', $scripts, $styles);
     </div>
   </div>
 
-  <table id="table-eos-container" class="table table-striped shadow">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">EO Number</th>
-        <th scope="col">Description</th>
-        <th scope="col">Author</th>
-        <th scope="col">Date Approved</th>
-        <th scope="col">Options</th>
-      </tr>
-    </thead>
+  <div class="table-responsive">
+    <table id="table-eos-container" class="table table-striped shadow">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">EO Number</th>
+          <th scope="col">Description</th>
+          <th scope="col" class="d-none d-sm-table-cell">Author</th>
+          <th scope="col" class="d-none d-sm-table-cell">Date Approved</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
 
-    <tbody id="table-eos"></tbody>
-  </table>
+      <tbody id="table-eos"></tbody>
+    </table>
+  </div>
 
   <nav aria-label="Executive Orders navigation">
     <ul id="eos-pagination" class="pagination justify-content-center">
@@ -134,8 +136,8 @@ page_header('EO Archive', $scripts, $styles);
     <tr>
       <td class="eo-number" scope="row"></td>
       <td class="eo-description"></td>
-      <td class="eo-author"></td>
-      <td class="eo-date-approved"></td>
+      <td class="eo-author d-none d-sm-table-cell"></td>
+      <td class="eo-date-approved d-none d-sm-table-cell"></td>
       <td>
         <a href="/archive/view/" class="btn btn-success btn-sm eo-view" title="View executive order" role="button">
           <i class="fas fa-eye"></i>
