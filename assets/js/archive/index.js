@@ -87,7 +87,8 @@ $(document).ready(function () {
       $(elem).find('.eo-description').text(item.description);
       $(elem).find('.eo-author').text(item.author);
       $(elem).find('.eo-date-approved').text(dateApproved);
-      $(elem).find('.eo-view,.eo-edit').attr('href', (i, value) => value + item.id);
+      $(elem).find('.eo-view,.eo-edit,.eo-download').attr('href', (i, value) => value + item.id);
+      $(elem).find('.eo-download').attr('download', item.filename);
       $(elem).find('.eo-delete').data({
         id: item.id,
         num: item.number

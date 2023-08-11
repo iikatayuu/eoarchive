@@ -42,6 +42,11 @@ page_header('View | EO Archive', $scripts, $styles);
 
       <div class="d-flex flex-column">
         <a href="/archive/service/Archive_service/get_pdf/<?= $eo->id ?>" target="_blank" class="btn btn-primary mb-2" role="button">Open PDF in new tab</a>
+        <a href="/archive/service/Archive_service/get_pdf/<?= $eo->id ?>" download="<?= $eo->filename ?>" class="btn btn-secondary mb-2" role="button">
+          <i class="fas fa-download me-1"></i>
+          <span>Download</span>
+        </a>
+
         <div class="d-flex">
           <button type="button" id="pdf-prev" class="btn btn-outline-info px-3">
             <i class="fas fa-caret-left"></i>

@@ -130,6 +130,10 @@ page_header('EO Archive', $scripts, $styles);
           <i class="fas fa-edit"></i>
         </a>
 
+        <a href="/archive/service/Archive_service/get_pdf/" class="btn btn-secondary btn-sm eo-download" title="Download executive order" role="button">
+          <i class="fas fa-download"></i>
+        </a>
+
         <button class="btn btn-danger btn-sm eo-delete" title="Delete executive order">
           <i class="fas fa-trash"></i>
         </button>
