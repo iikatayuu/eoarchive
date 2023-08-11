@@ -79,10 +79,25 @@ page_header('EO Archive', $scripts, $styles);
 
   <div class="d-flex justify-content-between mb-2">
     <h4>Executive Orders</h4>
-    <a href="/archive/add" class="btn btn-primary" role="button">
-      <i class="fas fa-plus me-1"></i>
-      <span>Add new</span>
-    </a>
+
+    <div class="d-flex">
+      <a href="/archive/add" class="btn btn-primary me-2" role="button">
+        <i class="fas fa-plus me-1"></i>
+        <span>Add new</span>
+      </a>
+
+      <div class="dropdown" data-bs-theme="dark">
+        <button type="button" id="btn-export-dropdown" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-download me-1"></i>
+          <span>Download</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="/archive/service/Archive_service/export/excel" id="export-excel" class="dropdown-item text-white">Excel</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a href="/archive/service/Archive_service/export/pdf" id="export-pdf" class="dropdown-item text-white">PDF</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <table id="table-eos-container" class="table table-striped shadow">

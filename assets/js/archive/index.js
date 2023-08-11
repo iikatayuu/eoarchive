@@ -72,7 +72,8 @@ $(document).ready(function () {
     params.set('approved_to', qApprovedTo);
     params.set('offset', offset);
     params.set('limit', limit);
-    const items = await $.getJSON(`${serviceApi}/eos?${params.toString()}`);
+    const paramsQuery = params.toString();
+    const items = await $.getJSON(`${serviceApi}/eos?${paramsQuery}`);
 
     $('#table-eos').empty();
     $('#eos-pagination').children().not(':first').not(':last').remove();
@@ -95,6 +96,8 @@ $(document).ready(function () {
       }).click(deleteItem);
 
       $('#table-eos').append(elem);
+      $('#export-excel').attr('href', `${serviceApi}/export/excel?${paramsQuery}`);
+      $('#export-pdf').attr('href', `${serviceApi}/export/pdf?${paramsQuery}`);
     }
 
     const active = (offset / limit) + 1;

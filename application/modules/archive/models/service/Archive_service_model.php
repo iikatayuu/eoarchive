@@ -1,9 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
+
 class Archive_service_model extends CI_Model {
   protected $table;
   protected $data_path;
+  protected $alpha;
 
   /**
    * Search pagination
@@ -34,6 +41,7 @@ class Archive_service_model extends CI_Model {
   public function __construct () {
     parent::__construct();
 
+    $this->alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $this->data_path = dirname(__FILE__, 6) . '/data';
     $this->table = json_decode(DB_TABLE);
     $this->load->model([]);
@@ -64,6 +72,32 @@ class Archive_service_model extends CI_Model {
       'results' => array_slice($result, $this->offset, $this->limit),
       'count' => count($result)
     );
+  }
+
+  public function export_excel () {
+    $spreadsheet = $this->export();
+
+    $writer = new Xlsx($spreadsheet);
+    $filename = strval(time());
+
+    header('Content-Type: application/vnd.ms-excel');
+    header("Content-Disposition: attachment; filename=\"$filename.xlsx\"");
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
+  }
+
+  public function export_pdf () {
+    $spreadsheet = $this->export();
+
+    $writer = new Mpdf($spreadsheet);
+    $filename = strval(time());
+
+    header('Content-Type: application/pdf');
+    header("Content-Disposition: attachment; filename=\"$filename.pdf\"");
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
   }
 
   public function get_pdf () {
@@ -199,5 +233,70 @@ class Archive_service_model extends CI_Model {
     ) {
       throw new Exception(INVALID_INPUT);
     }
+  }
+
+  private function export () {
+    $result_arr = $this->eos();
+    $spreadsheet = new Spreadsheet();
+    $properties = $spreadsheet->getProperties();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $headers = ['EO Num', 'Series', 'Description', 'Author', 'Author Position', 'Approved By', 'Date Approved'];
+    $headers_len = count($headers);
+    foreach ($headers as $i => $header) {
+      $col = substr($this->alpha, $i, 1);
+      $sheet->setCellValue("{$col}1", $header);
+    }
+
+    for ($i = 0; $i < $result_arr['count']; $i++) {
+      $result = $result_arr['results'][$i];
+      $row = $i + 2;
+
+      for ($j = 0; $j < $headers_len; $j++) {
+        $header = $headers[$j];
+        $col = substr($this->alpha, $j, 1);
+        $value = '';
+
+        if ($header === 'EO Num') $value = $result->number;
+        if ($header === 'Series') $value = $result->series;
+        if ($header === 'Description') $value = $result->description;
+        if ($header === 'Author') $value = $result->author;
+        if ($header === 'Author Position') $value = $result->author_position;
+        if ($header === 'Approved By') $value = $result->approved_by;
+        if ($header === 'Date Approved') $value = $result->date_approved;
+
+        $sheet->setCellValue("{$col}{$row}", $value);
+      }
+    }
+
+    $end_col = substr($this->alpha, $headers_len - 1, 1);
+    $end_row = $result_arr['count'] + 1;
+    $end_cell = "$end_col$end_row";
+    $style_arr = [
+      'borders' => [
+        'allBorders' => [
+          'borderStyle' => Border::BORDER_THIN,
+          'color' => ['rgb' => '000000']
+        ]
+      ]
+    ];
+
+    $sheet->getPageSetup()->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+    $sheet->getStyle("A1:$end_cell")->applyFromArray($style_arr);
+    $sheet->getColumnDimension('A')->setWidth(58, 'px');
+    $sheet->getColumnDimension('B')->setWidth(80, 'px');
+    $sheet->getColumnDimension('C')->setWidth(450, 'px');
+    $sheet->getColumnDimension('D')->setWidth(160, 'px');
+    $sheet->getColumnDimension('E')->setWidth(125, 'px');
+    $sheet->getColumnDimension('F')->setWidth(160, 'px');
+    $sheet->getColumnDimension('G')->setWidth(125, 'px');
+
+    $time = time();
+    $title = "EOArchive Export {$time}";
+    $properties->setCreator('EOArchive');
+    $properties->setTitle($title);
+    $properties->setSubject($title);
+
+    return $spreadsheet;
   }
 }

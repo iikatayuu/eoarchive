@@ -36,6 +36,22 @@ class Archive_service extends MX_Controller {
     echo $response['pdf'];
   }
 
+  public function export ($format) {
+    $this->asModel->description = $this->input->get('description');
+    $this->asModel->series = $this->input->get('series');
+    $this->asModel->author = $this->input->get('author');
+    $this->asModel->approved_by = $this->input->get('approved_by');
+    $this->asModel->approved_from = $this->input->get('approved_from');
+    $this->asModel->approved_to = $this->input->get('approved_to');
+    $offset = $this->input->get('offset');
+    $limit = $this->input->get('limit');
+    $this->asModel->offset = is_numeric($offset) ? intval($offset) : 0;
+    $this->asModel->limit = is_numeric($limit) ? intval($limit) : 10;
+
+    if ($format === 'excel') $this->asModel->export_excel();
+    if ($format === 'pdf') $this->asModel->export_pdf();
+  }
+
   public function add_eo () {
     $this->asModel->number = $this->input->post('eo-num');
     $this->asModel->series = $this->input->post('eo-series');

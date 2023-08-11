@@ -1,0 +1,16 @@
+{
+    "name": "eidoriantan/eoarchive",
+    "description": "Executive Orders Archive/Search System",
+    "type": "project",
+    "license": "UNLICENSED",
+    "authors": [
+        {
+            "name": "Adriane Justine Geneblaza Tan",
+            "email": "eidoriantan@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.29",
+        "mpdf/mpdf": "^8.1"
+    }
+}
