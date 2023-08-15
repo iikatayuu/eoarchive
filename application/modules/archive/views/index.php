@@ -9,7 +9,7 @@ page_header('EO Archive', $scripts, $styles);
 <div class="container pt-4">
   <form id="archive-search" class="col-12 col-lg-6 mb-3">
     <div class="input-group">
-      <input type="search" id="archive-search-q" class="form-control" placeholder="Executive Order Title/Description" aria-label="Executive Order Title/Description" aria-describedby="btn-item-search" />
+      <input type="search" id="archive-search-q" class="form-control" placeholder="Executive Order Title/Description" aria-label="Executive Order Title/Description" aria-describedby="btn-eo-search" />
       <button type="submit" class="btn btn-success" id="btn-eo-search">
         <i class="fas fa-search me-1"></i>
         <span>Search</span>
