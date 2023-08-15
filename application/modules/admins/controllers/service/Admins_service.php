@@ -16,11 +16,12 @@ class Admins_service extends MX_Controller {
     $this->asModel->password = $this->input->post('password');
 
     $response = $this->asModel->login();
-    if ($response['success']) {
+    if ($response['result']['success']) {
+      $this->session->userid = $response['id'];
       $this->session->username = $this->asModel->username;
     }
 
-    echo json_encode($response);
+    echo json_encode($response['result']);
   }
 
   public function admins () {

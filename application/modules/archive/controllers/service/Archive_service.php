@@ -61,6 +61,7 @@ class Archive_service extends MX_Controller {
     $this->asModel->author = $this->input->post('eo-author');
     $this->asModel->author_position = $this->input->post('eo-author-position');
     $this->asModel->approved_by = $this->input->post('eo-approved');
+    $this->asModel->added_by = $this->session->userid;
     $this->asModel->approved_date = $this->input->post('eo-approved-date');
     $this->asModel->file = isset($_FILES['eo-file']) ? $_FILES['eo-file'] : null;
 

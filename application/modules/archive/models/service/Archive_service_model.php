@@ -30,6 +30,7 @@ class Archive_service_model extends CI_Model {
   public $author;
   public $author_position;
   public $approved_by;
+  public $added_by;
   public $approved_date;
   public $file;
 
@@ -128,6 +129,7 @@ class Archive_service_model extends CI_Model {
         'author' => $this->author,
         'author_position' => $this->author_position,
         'approved_by' => $this->approved_by,
+        'added_by' => $this->added_by,
         'date_approved' => date('Y-m-d H:i:s', $approved_timestamp)
       );
 

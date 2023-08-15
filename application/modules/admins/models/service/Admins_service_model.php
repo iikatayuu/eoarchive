@@ -25,13 +25,13 @@ class Admins_service_model extends CI_Model {
     $this->db->limit(1);
 
     $result = $this->db->get()->result();
+    $admin = count($result) > 0 ? $result[0] : null;
     $response = [
       'success' => false,
       'message' => ''
     ];
   
-    if (count($result) > 0) {
-      $admin = $result[0];
+    if ($admin !== null) {
       if (password_verify($this->password, $admin->password)) {
         $response['success'] = true;
         $response['message'] = 'Logged in successfully!';
@@ -42,7 +42,10 @@ class Admins_service_model extends CI_Model {
       $response['message'] = 'No admin found with that username';
     }
 
-    return $response;
+    return [
+      'id' => $admin->id,
+      'result' => $response
+    ];
   }
 
   public function admins () {
