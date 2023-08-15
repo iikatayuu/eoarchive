@@ -43,8 +43,8 @@ class Archive_service_model extends CI_Model {
 
     $this->alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $this->data_path = dirname(__FILE__, 6) . '/data';
-    $this->table = json_decode(DB_TABLE);
     $this->load->model([]);
+    $this->table = json_decode(DB_TABLE);
   }
 
   public function eos () {
