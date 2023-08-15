@@ -5,6 +5,7 @@ class Archive_service extends MX_Controller {
   public function __construct () {
     parent::__construct();
 
+    $this->load->library('session');
     $this->load->model([
       'archive/service/Archive_service_model' => 'asModel'
     ]);
@@ -53,6 +54,7 @@ class Archive_service extends MX_Controller {
   }
 
   public function add_eo () {
+    $this->should_logged();
     $this->asModel->number = $this->input->post('eo-num');
     $this->asModel->series = $this->input->post('eo-series');
     $this->asModel->description = $this->input->post('eo-description');
@@ -67,6 +69,7 @@ class Archive_service extends MX_Controller {
   }
 
   public function edit_eo () {
+    $this->should_logged();
     $this->asModel->id = $this->input->post('eo-id');
     $this->asModel->number = $this->input->post('eo-num');
     $this->asModel->series = $this->input->post('eo-series');
@@ -82,9 +85,20 @@ class Archive_service extends MX_Controller {
   }
 
   public function delete_eo () {
+    $this->should_logged();
     $this->asModel->id = $this->input->post('id');
 
     $response = $this->asModel->delete_eo();
     echo json_encode($response);
+  }
+
+  private function should_logged () {
+    if (isset($this->session->username)) return;
+
+    echo json_encode([
+      'success' => false,
+      'message' => 'User is not logged in'
+    ]);
+    exit(0);
   }
 }

@@ -56,6 +56,22 @@ function page_header ($title = 'EO Archive', $scripts = [], $styles = []) {
               <span>Archive</span>
             </a>
           </li>
+
+          <?php if (isset($_SESSION['username'])): ?>
+          <li>
+            <a href="/admins" class="nav-link px-2 <?= $active === 'admins' ? 'text-white' : 'text-secondary' ?>">
+              <i class="fas fa-user me-1"></i>
+              <span><?= $_SESSION['username'] ?></span>
+            </a>
+          </li>
+          <?php else: ?>
+          <li>
+            <a href="/admins" class="nav-link px-2 <?= $active === 'admins' ? 'text-white' : 'text-secondary' ?>">
+              <i class="fas fa-user me-1"></i>
+              <span>Admin</span>
+            </a>
+          </li>
+          <?php endif; ?>
         </ul>
       </div>
     </div>

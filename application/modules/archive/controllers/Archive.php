@@ -7,6 +7,7 @@ class Archive extends MX_Controller {
   public function __construct () {
     parent::__construct();
 
+    $this->load->library('session');
     $this->load->model([
       'archive/Archive_model' => 'aModel'
     ]);
@@ -17,6 +18,7 @@ class Archive extends MX_Controller {
   }
 
   public function add () {
+    $this->should_logged('/archive/add');
     $this->load->view('add');
   }
 
@@ -28,7 +30,17 @@ class Archive extends MX_Controller {
 
   public function edit () {
     $this->aModel->id = $this->uri->segment(3);
+    $this->should_logged("/archive/edit/{$this->aModel->id}");
+
     $this->data['eo'] = $this->aModel->get_eo();
     $this->load->view('edit', $this->data);
+  }
+
+  private function should_logged ($next = '') {
+    if (isset($this->session->username)) return;
+
+    $url = urlencode($next);
+    header("Location: /admins/login?next=$url");
+    exit(0);
   }
 }
