@@ -22,10 +22,13 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 /application/vendor/
 
+.htaccess
+
 # IDE Files
 #-------------------------
 /nbproject/
 .idea/*
+.vscode/
 
 ## Sublime Text cache files
 *.tmlanguage.cache
