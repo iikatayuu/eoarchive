@@ -57,7 +57,12 @@ $(document).ready(function () {
         totalCount = 0;
         await loadItems();
       } else {
-        alert(response.message);
+        $.toast({
+          title: 'Error',
+          message: response.message,
+          icon: 'times',
+          type: 'danger'
+        });
       }
     }
   }

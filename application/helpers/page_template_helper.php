@@ -78,6 +78,8 @@ function page_footer () {
 ?>
   </main>
 
+  <div id="page-toasts" class="toast-container"></div>
+
   <div id="modal-ask" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -92,6 +94,18 @@ function page_footer () {
       </div>
     </div>
   </div>
+
+  <template id="temp-toast">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <div class="toast-icon d-content"></div>
+        <strong class="toast-title me-auto"></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+      </div>
+    </div>
+  </template>
 
   <template id="temp-ask-btn">
     <button type="button" class="btn"></button>

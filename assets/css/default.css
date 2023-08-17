@@ -8,3 +8,9 @@
 main {
   min-height: calc(100vh - 152px);
 }
+
+#page-toasts {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+}

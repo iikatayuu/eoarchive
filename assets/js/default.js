@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const tempToast = $('#temp-toast').prop('content');
   const tempAskBtn = $('#temp-ask-btn').prop('content');
 
   $.fn.extend({
@@ -24,6 +25,18 @@ $(document).ready(function () {
   });
 
   $.extend({
+    toast: function (options) {
+      const { title, message = '', icon = '', type = ''} = options;
+      const elem = $(tempToast).clone(true, true);
+
+      $(elem).find('.toast-title').text(title);
+      $(elem).find('.toast-body').text(message);
+      if (icon !== '') $(elem).find('.toast-icon').html('<i class="fas fa-' + icon + ' me-2" />');
+      if (type !== '') $(elem).find('.toast-header').addClass('bg-' + type).addClass('text-white');
+
+      $(elem).find('.toast').addClass('show');
+      $('#page-toasts').append(elem);
+    },
     modalAsk: function (options) {
       const { title, body, buttons } = options;
       $('#modal-ask').find('.modal-title').text(title);
