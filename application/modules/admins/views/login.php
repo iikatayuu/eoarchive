@@ -8,7 +8,7 @@ page_header('Admin Sign In | EO Archive', $scripts);
 <div class="container pt-4">
   <form action="" method="post" id="admin-login" class="card bg-light col-10 col-sm-7 col-md-5 col-lg-3 mx-auto mt-5 mb-3">
     <div class="card-body">
-      <h5 class="card-title">Administrator's Log In Page</h5>
+      <h5 class="card-title">Administrator's Log In</h5>
 
       <div class="form-group mb-2">
         <label for="admin-username">Username:</label>
