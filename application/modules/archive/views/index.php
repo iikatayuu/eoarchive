@@ -1,5 +1,6 @@
 <?php
 
+$baseurl = base_url();
 $scripts = ['assets/js/archive/index.js'];
 $styles = ['assets/css/archive/index.css'];
 page_header('EO Archive', $scripts, $styles);
@@ -81,7 +82,7 @@ page_header('EO Archive', $scripts, $styles);
     <h4>Executive Orders</h4>
 
     <div class="d-flex">
-      <a href="/archive/add" class="btn btn-primary me-2" role="button">
+      <a href="<?= $baseurl ?>archive/add" class="btn btn-primary me-2" role="button">
         <i class="fas fa-plus me-1"></i>
         <span>Add new</span>
       </a>
@@ -92,9 +93,9 @@ page_header('EO Archive', $scripts, $styles);
           <span>Download</span>
         </button>
         <ul class="dropdown-menu">
-          <li><a href="/archive/service/Archive_service/export/excel" id="export-excel" class="dropdown-item text-white">Excel</a></li>
+          <li><a href="<?= $baseurl ?>archive/service/Archive_service/export/excel" id="export-excel" class="dropdown-item text-white">Excel</a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a href="/archive/service/Archive_service/export/pdf" id="export-pdf" class="dropdown-item text-white">PDF</a></li>
+          <li><a href="<?= $baseurl ?>archive/service/Archive_service/export/pdf" id="export-pdf" class="dropdown-item text-white">PDF</a></li>
         </ul>
       </div>
     </div>
@@ -139,15 +140,15 @@ page_header('EO Archive', $scripts, $styles);
       <td class="eo-author d-none d-sm-table-cell"></td>
       <td class="eo-date-approved d-none d-sm-table-cell"></td>
       <td>
-        <a href="/archive/view/" class="btn btn-success btn-sm eo-view" title="View executive order" role="button">
+        <a href="<?= $baseurl ?>archive/view/" class="btn btn-success btn-sm eo-view" title="View executive order" role="button">
           <i class="fas fa-eye"></i>
         </a>
 
-        <a href="/archive/edit/" class="btn btn-primary btn-sm eo-edit" title="Edit executive order" role="button">
+        <a href="<?= $baseurl ?>archive/edit/" class="btn btn-primary btn-sm eo-edit" title="Edit executive order" role="button">
           <i class="fas fa-edit"></i>
         </a>
 
-        <a href="/archive/service/Archive_service/get_pdf/" class="btn btn-secondary btn-sm eo-download" title="Download executive order" role="button">
+        <a href="<?= $baseurl ?>archive/service/Archive_service/get_pdf/" class="btn btn-secondary btn-sm eo-download" title="Download executive order" role="button">
           <i class="fas fa-download"></i>
         </a>
 

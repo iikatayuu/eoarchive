@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const serviceApi = '/index.php/admins/service/Admins_service';
+  const serviceApi = `${window.baseUrl}admins/service/Admins_service`;
   const tempItem = $('#temp-table-admin').prop('content');
   const tempPage = $('#temp-page').prop('content');
   const limit = 10;

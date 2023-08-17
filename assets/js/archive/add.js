@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const serviceApi = '/index.php/archive/service/Archive_service';
+  const serviceApi = `${window.baseUrl}archive/service/Archive_service`;
 
   $('#archive-add').submit(async function (event) {
     event.preventDefault();

@@ -1,5 +1,6 @@
 <?php
 
+$baseurl = base_url();
 $scripts = [
   'assets/libs/pdf.js/build/pdf.js',
   'assets/js/archive/view.js'
@@ -17,12 +18,12 @@ page_header('View | EO Archive', $scripts, $styles);
   <div class="row">
     <div class="col-12 col-sm-4 col-lg-3 mb-2 mb-sm-0">
       <div class="d-flex mb-2">
-        <a href="/" class="btn btn-outline-dark me-2" role="button">
+        <a href="<?= $baseurl ?>" class="btn btn-outline-dark me-2" role="button">
           <i class="fas fa-arrow-left me-1"></i>
           <span>Back to list</span>
         </a>
 
-        <a href="/archive/edit/<?= $eo->id ?>" class="btn btn-outline-primary" role="button">
+        <a href="<?= $baseurl ?>archive/edit/<?= $eo->id ?>" class="btn btn-outline-primary" role="button">
           <i class="fas fa-edit me-1"></i>
           <span>Edit</span>
         </a>
@@ -41,8 +42,8 @@ page_header('View | EO Archive', $scripts, $styles);
       </div>
 
       <div class="d-flex flex-column">
-        <a href="/archive/service/Archive_service/get_pdf/<?= $eo->id ?>" target="_blank" class="btn btn-primary mb-2" role="button">Open PDF in new tab</a>
-        <a href="/archive/service/Archive_service/get_pdf/<?= $eo->id ?>" download="<?= $eo->filename ?>" class="btn btn-secondary mb-2" role="button">
+        <a href="<?= $baseurl ?>archive/service/Archive_service/get_pdf/<?= $eo->id ?>" target="_blank" class="btn btn-primary mb-2" role="button">Open PDF in new tab</a>
+        <a href="<?= $baseurl ?>archive/service/Archive_service/get_pdf/<?= $eo->id ?>" download="<?= $eo->filename ?>" class="btn btn-secondary mb-2" role="button">
           <i class="fas fa-download me-1"></i>
           <span>Download</span>
         </a>

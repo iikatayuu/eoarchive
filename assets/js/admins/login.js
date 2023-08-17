@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  const serviceApi = '/index.php/admins/service/Admins_service';
+  const serviceApi = `${window.baseUrl}admins/service/Admins_service`;
   const params = new URLSearchParams(window.location.search);
-  const next = params.get('next') || '/admins';
+  const next = params.get('next') || `${window.baseUrl}admins`;
 
   $('#admin-login').submit(async function (event) {
     event.preventDefault();

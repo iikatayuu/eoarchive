@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const serviceApi = '/index.php/archive/service/Archive_service';
+  const serviceApi = `${window.baseUrl}archive/service/Archive_service`;
   const tempItem = $('#temp-table-eo').prop('content');
   const tempPage = $('#temp-page').prop('content');
   const limit = 10;

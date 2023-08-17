@@ -19,7 +19,7 @@ function page_header ($title = 'EO Archive', $scripts = [], $styles = []) {
   <link rel="icon" type="image/png" sizes="32x32" href="<?= $baseurl ?>assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="<?= $baseurl ?>assets/favicon-16x16.png" />
   <link rel="manifest" href="<?= $baseurl ?>assets/site.webmanifest" />
-  <link rel="mask-icon" href="<?= $baseurl ?>/assets/safari-pinned-tab.svg" color="#212529" />
+  <link rel="mask-icon" href="<?= $baseurl ?>assets/safari-pinned-tab.svg" color="#212529" />
   <link rel="shortcut icon" href="<?= $baseurl ?>assets/favicon.ico" />
 
   <link rel="stylesheet" href="<?= $baseurl ?>assets/libs/bootstrap/css/bootstrap.min.css" />
@@ -33,6 +33,7 @@ function page_header ($title = 'EO Archive', $scripts = [], $styles = []) {
   <script src="<?= $baseurl ?>assets/libs/fontawesome/js/all.min.js" defer></script>
   <script src="<?= $baseurl ?>assets/libs/moment/moment.min.js"></script>
   <script src="<?= $baseurl ?>assets/js/default.js"></script>
+  <script>window.baseUrl = '<?= $baseurl ?>';</script>
   <?php foreach ($scripts as $key => $script): ?>
   <script src="<?= $baseurl ?><?= $script ?>"></script>
   <?php endforeach; ?>
@@ -51,27 +52,18 @@ function page_header ($title = 'EO Archive', $scripts = [], $styles = []) {
 
         <ul class="nav">
           <li>
-            <a href="/" class="nav-link px-2 <?= $active === '' ? 'text-white' : 'text-secondary' ?>">
+            <a href="<?= $baseurl ?>" class="nav-link px-2 <?= $active === '' ? 'text-white' : 'text-secondary' ?>">
               <i class="fas fa-archive me-1"></i>
               <span>Archive</span>
             </a>
           </li>
 
-          <?php if (isset($_SESSION['username'])): ?>
           <li>
-            <a href="/admins" class="nav-link px-2 <?= $active === 'admins' ? 'text-white' : 'text-secondary' ?>">
+            <a href="<?= $baseurl ?>admins" class="nav-link px-2 <?= $active === 'admins' ? 'text-white' : 'text-secondary' ?>">
               <i class="fas fa-user me-1"></i>
-              <span><?= $_SESSION['username'] ?></span>
+              <span><?= isset($_SESSION['username']) ? $_SESSION['username'] : 'Admin' ?></span>
             </a>
           </li>
-          <?php else: ?>
-          <li>
-            <a href="/admins" class="nav-link px-2 <?= $active === 'admins' ? 'text-white' : 'text-secondary' ?>">
-              <i class="fas fa-user me-1"></i>
-              <span>Admin</span>
-            </a>
-          </li>
-          <?php endif; ?>
         </ul>
       </div>
     </div>

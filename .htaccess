@@ -2,4 +2,5 @@ FallbackResource /index.php
 
 <IfModule mod_env.c>
 SetEnv CI_ENV development
+SetEnv APP_BASE_URL http://eoarchive
 </IfModule>

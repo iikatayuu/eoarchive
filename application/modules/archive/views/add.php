@@ -1,5 +1,6 @@
 <?php
 
+$baseurl = base_url();
 $scripts = ['assets/js/archive/add.js'];
 page_header('Add New | EO Archive', $scripts);
 
@@ -62,7 +63,7 @@ page_header('Add New | EO Archive', $scripts);
     </div>
 
     <div class="card-footer text-end">
-      <a href="/" class="btn btn-secondary" role="button">Cancel</a>
+      <a href="<?= $baseurl ?>" class="btn btn-secondary" role="button">Cancel</a>
 
       <button type="submit" class="btn btn-primary">
         <i class="fas fa-plus me-1"></i>

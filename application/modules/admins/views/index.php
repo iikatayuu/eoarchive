@@ -1,5 +1,6 @@
 <?php
 
+$baseurl = base_url();
 $scripts = ['assets/js/admins/index.js'];
 page_header('Administrators | EO Archive', $scripts);
 
@@ -47,7 +48,7 @@ page_header('Administrators | EO Archive', $scripts);
           </div>
         </div>
 
-        <a href="/admins/logout" class="btn btn-danger" role="button">
+        <a href="<?= $baseurl ?>admins/logout" class="btn btn-danger" role="button">
           <i class="fas fa-sign-out-alt me-1"></i>
           <span>Sign Out</span>
         </a>

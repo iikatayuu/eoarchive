@@ -1,8 +1,8 @@
 $(document).ready(function () {
   if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js was not loaded');
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/libs/pdf.js/build/pdf.worker.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `${window.baseUrl}assets/libs/pdf.js/build/pdf.worker.js`;
 
-  const serviceApi = '/index.php/archive/service/Archive_service';
+  const serviceApi = `${window.baseUrl}archive/service/Archive_service`;
   const parts = window.location.pathname.split('/');
   const id = parts[parts.length - 1];
   let pageActive = 1;
