@@ -43,7 +43,7 @@ class Admins_service_model extends CI_Model {
     }
 
     return [
-      'id' => $admin->id,
+      'id' => $response['success'] ? $admin->id : '',
       'result' => $response
     ];
   }
