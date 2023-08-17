@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 function page_header ($title = 'EO Archive', $scripts = [], $styles = []) {
   $baseurl = base_url();
