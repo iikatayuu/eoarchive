@@ -20,7 +20,7 @@ class Archive extends MX_Controller {
   }
 
   public function add () {
-    $this->should_logged('/archive/add');
+    $this->should_logged("{$this->baseurl}archive/add");
     $this->load->view('add');
   }
 
@@ -32,7 +32,7 @@ class Archive extends MX_Controller {
 
   public function edit () {
     $this->aModel->id = $this->uri->segment(3);
-    $this->should_logged("/archive/edit/{$this->aModel->id}");
+    $this->should_logged("{$this->baseurl}archive/edit/{$this->aModel->id}");
 
     $this->data['eo'] = $this->aModel->get_eo();
     $this->load->view('edit', $this->data);

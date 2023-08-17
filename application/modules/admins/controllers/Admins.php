@@ -16,7 +16,7 @@ class Admins extends MX_Controller {
   }
 
   public function index () {
-    $this->should_logged('/admins');
+    $this->should_logged("{$this->baseurl}admins");
     $this->load->view('index');
   }
 
